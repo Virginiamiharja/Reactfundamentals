@@ -28,6 +28,14 @@
   color: #61dafb;
 }
 
+/* Tambahan untuk table */
+table, tr, td, th {
+  border: 2px solid black; 
+  border-collapse: collapse;
+  text-align: center; 
+  padding: 10px;              
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
