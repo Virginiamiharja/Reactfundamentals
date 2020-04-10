@@ -44,3 +44,28 @@ table, tr, td, th {
     transform: rotate(360deg);
   }
 }
+
+/* My own CSS */ 
+.my-btn {
+  background-color: white;
+  border: 2px solid blueviolet;
+  color: blueviolet;
+  /* padding: 12px 100px; */
+}
+
+
+.my-btn:hover {
+  background-color:blueviolet;
+  border: 2px solid blueviolet;
+  color: white;
+  /* padding: 12px 100px; */
+}
+
+.my-btn:disabled {
+  background-color:gray;
+  border: 2px solid blueviolet;
+  color: white;
+  /* padding: 12px 100px; */
+}
+
+
