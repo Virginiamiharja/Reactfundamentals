@@ -108,8 +108,6 @@ class InputScreen extends React.Component {
             })
 
             console.log(this.state.person)
-
-            console.log(idxUser + " " + idxPass)
             {idxUser == idxPass && fndUser ? this.setState({text : "Hai selamat datang " + inputUsername}) : alert("Username atau password salah")}
         }
 
