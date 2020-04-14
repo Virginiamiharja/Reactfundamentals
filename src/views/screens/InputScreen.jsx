@@ -99,16 +99,10 @@ class InputScreen extends React.Component {
                 return val.username == inputUsername && val.password == inputPassword
             })
 
-            let idxUser = this.state.person.findIndex(val => {
-                return val.username == inputUsername
-            })
-            
-            let idxPass = this.state.person.findIndex(val => {
-                return val.password == inputPassword
-            })
-
             console.log(this.state.person)
-            {idxUser == idxPass && fndUser ? this.setState({text : "Hai selamat datang " + inputUsername}) : alert("Username atau password salah")}
+            console.log(fndUser)
+
+            {fndUser ? this.setState({text : "Hai selamat datang " + fndUser.username}) : alert("Username atau password yang anda masukan salah") }
         }
 
         return(
