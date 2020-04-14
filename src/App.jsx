@@ -6,6 +6,9 @@ import TableProduct from './views/components/TableProduct';
 import CounterScreen from './views/components/CounterScreen';
 import ProductCard from './views/components/ProductCard';
 import'./bootstrap.css';
+import InputScreen from "./views/screens/InputScreen"
+// Cara import gambar
+// import Handmaid from './images/handmaid.png'
 
 // Mirip html tapi bukan html melainkan jsx
 // Awalnya kan extensionnya itu app.js trs ubah app.jsx jadi h1 nya bisa auto complete
@@ -121,14 +124,20 @@ function App() {
 
   return (
     <div className='App'>
-      <h1 className='p-2 mt-5 mb-5'>Virginia's Book Store</h1>
-      <div className="row justify-content-center"> 
-        {renderBook()}
-      </div>
-      <div className="row justify-content-center">
-        <TableProduct/>
-      </div>
+      {/* <h1 className='p-2 mt-5 mb-5'>Virginia's Book Store</h1> */}
     
+      {/* <div className="row justify-content-center"> 
+        {renderBook()}
+      </div> */}
+
+      {/* <div className="row justify-content-center">
+        <TableProduct/>
+      </div> */}
+
+      {/* <CounterScreen/> */}
+
+      <h1 className='p-2 m-3'> Unicorn Fan Club</h1>
+      <InputScreen/>
     </div>
   )
 }

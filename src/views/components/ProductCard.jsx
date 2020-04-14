@@ -44,6 +44,8 @@ const ProductCard = (props) => {
 
     const {book} = props
     const {author, title, review, desc, price, discount, image, stock} = book
+    // Atau bisa juga begini
+    // const {author, title, review, desc, price, discount, image, stock} = props.book
 
     let disc = (discount/100) * price
     let finalPrice = price - disc
@@ -68,6 +70,7 @@ const ProductCard = (props) => {
         if (discount) {
             return (
             <div className="d-flex">
+                {/* Ada method baru namanya to precision */}
                 <h5 className="mr-4"> ${finalPrice.toFixed(2)} </h5>
                 <h5 style={{textDecoration:"line-through", opacity:"0.7"}}> ${price} </h5>
             </div>
@@ -87,6 +90,10 @@ const ProductCard = (props) => {
             <div className="d-flex justify-content-center col-5" style={{height:"294px"}}>
                 {/* Ini cara versi html */}
                 <img style={{height:"100%"}} src={image} alt=""/>
+                {/* Trs cara kakaknya pake fallback buat jaga2 kalo stringnya kosong */}
+                {/* Kalo misalnya imagenya kosong jadi dia bakal cariin image pengganti lain gitu si author pun bisa digituin */}
+                {/* Jadi ni si image nyari ada ga isinya, kalo gaada dia bakal ganti ke si handmaid */}
+                {/* <img src={image || Handmaid} /> */}
             </div>
             <div className="col-7">
                 <p style={{opacity:"0.8"}}> {author} </p>

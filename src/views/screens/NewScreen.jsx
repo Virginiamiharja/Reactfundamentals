@@ -18,8 +18,7 @@ const KomponenAku = () => {
 const NewScreen = () => {
     return (
         <div>
-            <h1> Hallo aku screen baru !</h1>
-            <KomponenAku/>
+            <h6> Hallo aku screen baru !</h6>
         </div>
     )
 }
