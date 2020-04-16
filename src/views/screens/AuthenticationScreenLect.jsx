@@ -40,20 +40,23 @@ class AuthScreen extends React.Component {
   };
 
   loginHandler = () => {
-    const { loginUsername, loginPassword, users } = this.state;
+    const { loginUsername, loginPassword, users, currentUsername } = this.state;
     for (let i = 0; i < users.length; i++) {
       if (
         users[i].username == loginUsername &&
         users[i].password == loginPassword
       ) {
-        this.setState({
-          isLoggedIn: true,
-          currentUsername: users[i].username,
-          loginUsername: "",
-          loginPassword: "",
-        });
-        break;
+        // this.setState({
+        //   isLoggedIn: true,
+        //   currentUsername: users[i].username,
+        //   loginUsername: "",
+        //   loginPassword: "",
+        // });
+        // break;
+       alert("Hai")
       }
+
+      
 
       if (i == users.length - 1) {
         alert("User tidak ada atau password salah");
@@ -132,7 +135,7 @@ class AuthScreen extends React.Component {
       loginUsername,
     } = this.state;
 
-    if(!isLoggedIn) {
+    // if(!isLoggedIn) {
       return (
         <div>
           <h1>Auth Screen</h1>
@@ -207,9 +210,9 @@ class AuthScreen extends React.Component {
           </center>
         </div>
       );
-    } else {
-      return <Redirect to ={`profile/${currentUsername}`}/>
-    }
+    // } else {
+      // return <Redirect to ={`profile/${currentUsername}`}/>
+    // }
   }
 }
 
