@@ -1,12 +1,28 @@
 import React from 'react';
 import logo from './logo.svg';
-import NewScreen from "./views/screens/NewScreen"
+
 import './App.css';
+import'./bootstrap.css';
+
 import TableProduct from './views/components/TableProduct';
 import CounterScreen from './views/components/CounterScreen';
 import ProductCard from './views/components/ProductCard';
-import'./bootstrap.css';
-import InputScreen from "./views/screens/InputScreen"
+import InputScreen from "./views/screens/InputScreen";
+import AuthScreen from './views/screens/AuthenticationScreenLect';
+import LifescycleScreen from './views/screens/LifecycleScreen';
+import NewScreen from "./views/screens/NewScreen";
+import HomeScreen from "./views/screens/HomeScreen"
+import PageNotFound from './views/screens/PageNotFound';
+import ProfileScreen from './views/screens/ProfileScreen';
+
+// Untuk routing kita install dulu packagenya di terminal pake commad npm install react-router-dom kalo ini tidak global hanya berlaku di folder react-fundamentals aja
+import {BrowserRouter, Route, Switch, withRouter} from "react-router-dom";
+import navbar from './views/components/Navbar';
+import Navbar from './views/components/Navbar';
+
+// Trs untuk install json server -> buat ambil data dari server npm install -g json-server dan -g artinya global bisa digunakan dimana saja
+// Trs npm install axios
+
 // Cara import gambar
 // import Handmaid from './images/handmaid.png'
 
@@ -136,10 +152,33 @@ function App() {
 
       {/* <CounterScreen/> */}
 
-      <h1 className='p-2 m-3'> Unicorn Fan Club</h1>
-      <InputScreen/>
+      {/* <h1 className='p-2 m-3'> Unicorn Fan Club</h1> */}
+      {/* <InputScreen/> */}
+      {/* <AuthScreen/> */}
+      {/* <LifescycleScreen/> */}
+    
+      {/* <BrowserRouter> */}
+      {/* Disini diletakan komponen yang selalu ada di tiap web page contohnya navbar */}
+      <Navbar/>
+        <Switch>
+          {/* exact ini buat pastiin bener2 di path itu kl ga pake exact kalo misalnya kita buka /registartion masih kebukanya home screen */}
+           <Route exact path="/" component={HomeScreen}/>
+           <Route exact path="/registration" component={AuthScreen}/>
+           <Route exact path="/counter" component={CounterScreen}/>
+           <Route exact path="/input" component={InputScreen}/>
+           {/* Karena si username itu bukan exact pathnya gitu dan : itu adalah params */}
+           <Route exact path="/profile/:username" component={ProfileScreen}/>
+           {/* Bintang itu artinya semua, tapi dia hrs ditaro paling bawah gitu karena switch itu ngecek satu2 dari atas  */}
+           <Route path="*" component={PageNotFound}/>
+        </Switch>
+      {/* </BrowserRouter> */}
+
     </div>
+    
   )
 }
 
-export default App;
+// With router ini kan harus didalem browser router jadi otak atik index.js nya, with router buat bisa akses url yang ada di link di atas navbar google search itu
+export default withRouter(App);
+
+// untuk start jsonnya, arahin terminal ke file json trs ketik npx json-server --watch db.json -p 2000 kenapa 2000 karena yang port 3000 udh dipake di react

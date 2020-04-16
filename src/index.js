@@ -4,9 +4,15 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+// Ini buat routernya gitu deh
+import {BrowserRouter} from 'react-router-dom'
+
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* Trs disini kasih tambahan browser router */}
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );
