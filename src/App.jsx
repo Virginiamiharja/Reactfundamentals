@@ -15,6 +15,12 @@ import HomeScreen from "./views/screens/HomeScreen";
 import PageNotFound from "./views/screens/PageNotFound";
 import ProfileScreen from "./views/screens/ProfileScreen";
 
+// Screen weekend task
+import UserListScreen from "./views/screens/WTUserListScreen";
+import LoginScreen from "./views/screens/WTLoginScreen";
+import RegistrationScreen from "./views/screens/WTRegistrationScreen";
+import ProfileScreen1 from "./views/screens/WTProfileScreen";
+
 // Untuk routing kita install dulu packagenya di terminal pake commad npm install react-router-dom kalo ini tidak global hanya berlaku di folder react-fundamentals aja
 import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import navbar from "./views/components/Navbar";
@@ -158,24 +164,33 @@ function App() {
 
       {/* <BrowserRouter> */}
       {/* Disini diletakan komponen yang selalu ada di tiap web page contohnya navbar */}
+      {/* <Navbar /> */}
+      {/* <Switch> */}
+      {/* exact ini buat pastiin bener2 di path itu kl ga pake exact kalo misalnya kita buka /registartion masih kebukanya home screen */}
+      {/* <Route exact path="/" component={HomeScreen} /> */}
+      {/* <Route exact path="/registration" component={AuthScreen} /> */}
+      {/* <Route exact path="/counter" component={CounterScreen} /> */}
+      {/* <Route exact path="/input" component={InputScreen} /> */}
+      {/* Karena si username itu bukan exact pathnya gitu dan : itu adalah route params */}
+      {/* <Route exact path="/profile/:username" component={ProfileScreen} /> */}
+      {/* Bintang itu artinya semua, tapi dia hrs ditaro paling bawah gitu karena switch itu ngecek satu2 dari atas  */}
+      {/* <Route path="*" component={PageNotFound} /> */}
+      {/* </Switch> */}
+
+      {/* </BrowserRouter> */}
+
+      {/* Weekend Task */}
       <Navbar />
       <Switch>
-        {/* exact ini buat pastiin bener2 di path itu kl ga pake exact kalo misalnya kita buka /registartion masih kebukanya home screen */}
         <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/registration" component={AuthScreen} />
-        <Route exact path="/counter" component={CounterScreen} />
-        <Route exact path="/input" component={InputScreen} />
-        {/* Karena si username itu bukan exact pathnya gitu dan : itu adalah route params */}
-        <Route exact path="/profile/:username" component={ProfileScreen} />
-        {/* Bintang itu artinya semua, tapi dia hrs ditaro paling bawah gitu karena switch itu ngecek satu2 dari atas  */}
-        <Route path="*" component={PageNotFound} />
+        <Route exact path="/registration" component={RegistrationScreen} />
+        <Route exact path="/login" component={LoginScreen} />
+        <Route exact path="/userlist" component={UserListScreen} />
+        <Route exact path="/profile/:username" component={ProfileScreen1} />
       </Switch>
-      {/* </BrowserRouter> */}
     </div>
   );
 }
 
 // With router ini kan harus didalem browser router jadi otak atik index.js nya, with router buat bisa akses url yang ada di link di atas navbar google search itu
 export default withRouter(App);
-
-// untuk start jsonnya, arahin terminal ke file json trs ketik npx json-server --watch db.json -p 2000 kenapa 2000 karena yang port 3000 udh dipake di react

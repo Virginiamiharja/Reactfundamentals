@@ -1,0 +1,60 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "virginiamiharja",
+      "fullName": "Virginia Miharja",
+      "password": "12345",
+      "role": "Admin"
+    },
+    {
+      "id": 2,
+      "username": "kendalljenner",
+      "fullName": "Kendall Jenner",
+      "password": "12345",
+      "role": "User"
+    },
+    {
+      "id": 3,
+      "username": "cocorocha",
+      "fullName": "Coco Rocha",
+      "password": "12345",
+      "role": "User"
+    },
+    {
+      "username": "gigihadid",
+      "password": "12345",
+      "fullName": "Gigi Hadid",
+      "role": "User",
+      "id": 4
+    },
+    {
+      "username": "bellahadid",
+      "fullName": "Bella Hadid",
+      "password": "12345",
+      "role": "User",
+      "id": 5
+    },
+    {
+      "username": "anwarhadid",
+      "fullName": "Anwar Hadid",
+      "password": "12345",
+      "role": "Admin",
+      "id": 6
+    },
+    {
+      "username": "nuggetthecat",
+      "fullName": "Queen Elizabeth Nugget",
+      "password": "12345",
+      "role": "Admin",
+      "id": 7
+    },
+    {
+      "username": "selenagomez",
+      "fullName": "Selena Gomez",
+      "password": "selena",
+      "role": "Admin",
+      "id": 8
+    }
+  ]
+}

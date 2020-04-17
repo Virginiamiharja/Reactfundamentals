@@ -1,5 +1,5 @@
 import React from "react";
-import {Link, Redirect} from 'react-router-dom'
+import { Link, Redirect } from "react-router-dom";
 
 class AuthScreen extends React.Component {
   state = {
@@ -11,7 +11,7 @@ class AuthScreen extends React.Component {
     loginUsername: "",
     loginPassword: "",
     currentUsername: "",
-    activeEditIdx: null,
+    activeEditIdx: null
   };
 
   inputHandler = (e, field) => {
@@ -23,14 +23,14 @@ class AuthScreen extends React.Component {
     if (repPassword == password) {
       let newData = {
         username,
-        password,
+        password
       };
 
       this.setState({
         users: [...users, newData],
         username: "",
         password: "",
-        repPassword: "",
+        repPassword: ""
       });
 
       console.log(users);
@@ -53,10 +53,8 @@ class AuthScreen extends React.Component {
         //   loginPassword: "",
         // });
         // break;
-       alert("Hai")
+        alert("Hai");
       }
-
-      
 
       if (i == users.length - 1) {
         alert("User tidak ada atau password salah");
@@ -64,7 +62,7 @@ class AuthScreen extends React.Component {
     }
   };
 
-  deleteHandler = (idx) => {
+  deleteHandler = idx => {
     const { users } = this.state;
     let temp = [...users];
 
@@ -74,7 +72,7 @@ class AuthScreen extends React.Component {
   };
 
   renderUsers = () => {
-    const { users, activeEditIdx, } = this.state;
+    const { users, activeEditIdx } = this.state;
     return users.map((val, idx) => {
       if (idx == activeEditIdx) {
         return (
@@ -107,14 +105,13 @@ class AuthScreen extends React.Component {
                 onClick={() => this.setState({ activeEditIdx: idx })}
               /> */}
 
-            <Link to={`/profile/${val.username}`}>
-            <input
-              type="button"
-              value="Show"
-              className="btn btn-primary mt-3"
-            />
-            </Link>
-
+              <Link to={`/profile/${val.username}`}>
+                <input
+                  type="button"
+                  value="Show"
+                  className="btn btn-primary mt-3"
+                />
+              </Link>
             </td>
           </tr>
         );
@@ -132,10 +129,10 @@ class AuthScreen extends React.Component {
       currentUsername,
       activeEditIdx,
       loginPassword,
-      loginUsername,
+      loginUsername
     } = this.state;
 
-    if(!isLoggedIn) {
+    if (!isLoggedIn) {
       return (
         <div>
           <h1>Auth Screen</h1>
@@ -147,30 +144,29 @@ class AuthScreen extends React.Component {
                 className="form-control mt-2"
                 type="text"
                 placeholder="Username"
-                onChange={(e) => this.inputHandler(e, "username")}
+                onChange={e => this.inputHandler(e, "username")}
               />
               <input
                 value={password}
                 className="form-control mt-2"
                 type="text"
                 placeholder="Password"
-                onChange={(e) => this.inputHandler(e, "password")}
+                onChange={e => this.inputHandler(e, "password")}
               />
               <input
                 value={repPassword}
                 className="form-control mt-2"
                 type="text"
                 placeholder="Repeat Password"
-                onChange={(e) => this.inputHandler(e, "repPassword")}
+                onChange={e => this.inputHandler(e, "repPassword")}
               />
-  
+
               <input
                 type="button"
                 value="Register"
                 className="btn btn-primary mt-3"
                 onClick={this.registerHandler}
               />
-  
             </div>
             {/* <table className="table">
               <thead>
@@ -182,7 +178,7 @@ class AuthScreen extends React.Component {
               </thead>
               <tbody>{this.renderUsers()}</tbody>
             </table> */}
-  
+
             <div className="card p-5" style={{ width: "400px" }}>
               <h4>Login</h4>
               <input
@@ -190,14 +186,14 @@ class AuthScreen extends React.Component {
                 className="form-control mt-2"
                 type="text"
                 placeholder="Username"
-                onChange={(e) => this.inputHandler(e, "loginUsername")}
+                onChange={e => this.inputHandler(e, "loginUsername")}
               />
               <input
                 value={loginPassword}
                 className="form-control mt-2"
                 type="text"
                 placeholder="Password"
-                onChange={(e) => this.inputHandler(e, "loginPassword")}
+                onChange={e => this.inputHandler(e, "loginPassword")}
               />
               <input
                 type="button"
@@ -211,7 +207,7 @@ class AuthScreen extends React.Component {
         </div>
       );
     } else {
-      return <Redirect to ={`profile/${currentUsername}`}/>
+      return <Redirect to={`profile/${currentUsername}`} />;
     }
   }
 }

@@ -1,13 +1,13 @@
-import React from 'react'
+import React from "react";
 
 class HomeScreen extends React.Component {
-    render() {
-        return (
-            <div>
-                <h2> This is your home screen</h2>
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div className="mt-5">
+        <h2> Welcome to Virginia's Website </h2>
+      </div>
+    );
+  }
 }
 
-export default HomeScreen
+export default HomeScreen;
