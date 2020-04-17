@@ -1,14 +1,34 @@
 {
-    "posts": [],
-    "comments": [],
-    "users": [
-        {
-            "id" : 1,
-            "username" : "admin",
-            "password" : "pass",
-            "fullName" : "Admin aja",
-            "role" : "admin"
-        }
-    ]
-} 
-
+  "posts": [],
+  "comments": [],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "pass",
+      "fullName": "Admin aja",
+      "role": "admin"
+    },
+    {
+      "id": 2,
+      "username": "virgi",
+      "password": "pass",
+      "fullName": "Admin aja",
+      "role": "admin"
+    },
+    {
+      "id": 3,
+      "username": "pikachu",
+      "password": "pass",
+      "fullName": "Admin aja",
+      "role": "admin"
+    },
+    {
+      "username": "Bill",
+      "password": "123",
+      "fullName": "Bill Clinton",
+      "role": "user",
+      "id": 4
+    }
+  ]
+}

@@ -135,7 +135,7 @@ class AuthScreen extends React.Component {
       loginUsername,
     } = this.state;
 
-    // if(!isLoggedIn) {
+    if(!isLoggedIn) {
       return (
         <div>
           <h1>Auth Screen</h1>
@@ -210,9 +210,9 @@ class AuthScreen extends React.Component {
           </center>
         </div>
       );
-    // } else {
-      // return <Redirect to ={`profile/${currentUsername}`}/>
-    // }
+    } else {
+      return <Redirect to ={`profile/${currentUsername}`}/>
+    }
   }
 }
 
