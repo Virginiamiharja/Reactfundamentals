@@ -14,6 +14,7 @@ import NewScreen from "./views/screens/NewScreen";
 import HomeScreen from "./views/screens/HomeScreen";
 import PageNotFound from "./views/screens/PageNotFound";
 import ProfileScreen from "./views/screens/ProfileScreen";
+import TodoReduxScreen from "./views/screens/TodoReduxScreen";
 
 // Screen weekend task
 import UserListScreen from "./views/screens/WTUserListScreen";
@@ -29,6 +30,10 @@ import Navbar from "./views/components/Navbar";
 // Trs untuk install json server -> buat ambil data dari server, npm install -g json-server dan -g artinya global bisa digunakan dimana saja
 // Trs npm install axios
 // Trs cara start json npx json-server db.json -p 2000 tapi pastiin terminalnya di db.json filenya
+
+// Trs install redux
+// npm install reactstrap redux react-redux redux-thunk
+// Trs buka index.js
 
 // Cara import gambar
 // import Handmaid from './images/handmaid.png'
@@ -170,7 +175,6 @@ function App() {
       {/* <Route exact path="/" component={HomeScreen} /> */}
       {/* <Route exact path="/registration" component={AuthScreen} /> */}
       {/* <Route exact path="/counter" component={CounterScreen} /> */}
-      {/* <Route exact path="/input" component={InputScreen} /> */}
       {/* Karena si username itu bukan exact pathnya gitu dan : itu adalah route params */}
       {/* <Route exact path="/profile/:username" component={ProfileScreen} /> */}
       {/* Bintang itu artinya semua, tapi dia hrs ditaro paling bawah gitu karena switch itu ngecek satu2 dari atas  */}
@@ -187,6 +191,8 @@ function App() {
         <Route exact path="/login" component={LoginScreen} />
         <Route exact path="/userlist" component={UserListScreen} />
         <Route exact path="/profile/:username" component={ProfileScreen1} />
+        <Route exact path="/input" component={InputScreen} />
+        <Route exact path="/todo" component={TodoReduxScreen} />
       </Switch>
     </div>
   );

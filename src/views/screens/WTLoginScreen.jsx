@@ -2,6 +2,9 @@ import React from "react";
 import Axios from "axios";
 import { API_URL } from "../../constants/API";
 import { Redirect } from "react-router-dom";
+import swal from "sweetalert";
+import { connect } from "react-redux";
+import { usernameHandler } from "../../redux/actions";
 
 class LoginScreen extends React.Component {
   state = {
@@ -10,41 +13,33 @@ class LoginScreen extends React.Component {
     password: "",
     currId: null,
     currUsername: "",
-    isLoggedIn: false
+    isLoggedIn: false,
+    isWaiting: ""
   };
 
-  // Ini biar dia cuma sekali manggil fungsinya gitu
-  componentDidMount() {
-    Axios.get(`${API_URL}/users`)
+  loginHandler = () => {
+    const { username, password } = this.state;
+    Axios.get(`${API_URL}/users`, {
+      params: {
+        username,
+        password
+      }
+    })
       .then(res => {
-        console.log(res);
-        this.setState({ users: res.data });
+        if (res.data.length > 0) {
+          this.setState({
+            users: res.data,
+            isLoggedIn: true,
+            currUsername: username
+          });
+          this.props.onChangeUsername(res.data[0].fullName);
+        } else {
+          swal("Oops", "Wrong username or password", "error");
+        }
       })
       .catch(err => {
         console.log(err);
       });
-  }
-
-  loginHandler = () => {
-    const { users, username, password } = this.state;
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].username == username && users[i].password == password) {
-        alert("Welcome");
-        this.setState({
-          username: "",
-          password: "",
-          isLoggedIn: true,
-          currId: users[i].id,
-          currUsername: users[i].username
-        });
-        break;
-      }
-
-      // Masih kurang paham sama kondisi ini, apa karena dia ngerender berkali2 ya ?
-      if (i == users.length - 1) {
-        alert("Wrong username or password !");
-      }
-    }
   };
 
   render() {
@@ -80,6 +75,7 @@ class LoginScreen extends React.Component {
               class="btn btn-primary"
               value="Login"
               onClick={this.loginHandler}
+              disabled={this.state.isWaiting}
             />
           </form>
         </div>
@@ -90,4 +86,16 @@ class LoginScreen extends React.Component {
   }
 }
 
-export default LoginScreen;
+// Ngeconnect reducers
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+// Ngeconnect function2
+const mapDispatchToProps = {
+  onChangeUsername: usernameHandler
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

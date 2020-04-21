@@ -8,10 +8,12 @@ class RegistrationScreen extends React.Component {
     username: "",
     fullName: "",
     password: "",
-    role: ""
+    role: "",
+    isWaiting: false
   };
 
   // Ini biar dia cuma sekali manggil fungsinya gitu
+  // Tapi ini bukan best practice, best practice ada di kodingan kakaknya di github
   componentDidMount() {
     Axios.get(`${API_URL}/users`)
       .then(res => {
@@ -41,6 +43,13 @@ class RegistrationScreen extends React.Component {
         })
           .then(res => {
             console.log(res);
+            this.setState({ isWaiting: true });
+
+            // Liat dari kodingan kakaknya, ini fungsinya supaya button itu ke disabled ketika lagi nunggu response
+            // Untuk mencegah si user ngeklik button berkali2 jadi ga kirim trs2an
+            // setTimeout(() => {
+            //   Axios.get
+            // })
           })
           .catch(err => {
             console.log(err);
@@ -107,6 +116,7 @@ class RegistrationScreen extends React.Component {
             class="btn btn-primary"
             value="Register"
             onClick={this.registrationHandler}
+            disabled={this.state.isWaiting}
           />
         </form>
       </div>

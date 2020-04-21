@@ -55,6 +55,13 @@
       "password": "selena",
       "role": "Admin",
       "id": 8
+    },
+    {
+      "username": "lala",
+      "fullName": "Lala Teletubbies",
+      "password": "12345",
+      "role": "User",
+      "id": 9
     }
   ]
 }
