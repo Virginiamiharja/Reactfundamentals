@@ -1,6 +1,9 @@
 import React from "react";
 import Axios from "axios";
 import { API_URL } from "../../constants/API";
+import swal from "sweetalert";
+import { registerHandler } from "../../redux/actions";
+import { connect } from "react-redux";
 
 class RegistrationScreen extends React.Component {
   state = {
@@ -12,63 +15,24 @@ class RegistrationScreen extends React.Component {
     isWaiting: false
   };
 
-  // Ini biar dia cuma sekali manggil fungsinya gitu
-  // Tapi ini bukan best practice, best practice ada di kodingan kakaknya di github
-  componentDidMount() {
-    Axios.get(`${API_URL}/users`)
-      .then(res => {
-        console.log(res);
-        this.setState({ users: res.data });
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  }
-
   registrationHandler = () => {
-    const { users, username, fullName, password, role } = this.state;
-    for (let i = 0; i < users.length; i++) {
-      if (users[i].username == username) {
-        alert("Username must be unique");
-        break;
-      }
+    const { username, fullName, password, role } = this.state;
 
-      // Masih kurang paham sama kondisi ini, apa karena dia ngerender berkali2 ya ?
-      if (i == users.length - 1) {
-        Axios.post(`${API_URL}/users`, {
-          username,
-          fullName,
-          password,
-          role
-        })
-          .then(res => {
-            console.log(res);
-            this.setState({ isWaiting: true });
+    const userData = {
+      username,
+      fullName,
+      password,
+      role
+    };
 
-            // Liat dari kodingan kakaknya, ini fungsinya supaya button itu ke disabled ketika lagi nunggu response
-            // Untuk mencegah si user ngeklik button berkali2 jadi ga kirim trs2an
-            // setTimeout(() => {
-            //   Axios.get
-            // })
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      }
-    }
-
-    this.setState({
-      username: "",
-      fullName: "",
-      password: "",
-      role: ""
-    });
+    this.props.onRegister(userData);
   };
 
   render() {
     return (
       <div className="d-flex flex-column align-items-center justify-content-center">
         <h3 className="mt-5 mb-3"> Registration </h3>
+        <p> Username : {this.props.user.username}</p>
         <form className="form-group">
           <input
             type="text"
@@ -124,4 +88,14 @@ class RegistrationScreen extends React.Component {
   }
 }
 
-export default RegistrationScreen;
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = {
+  onRegister: registerHandler
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RegistrationScreen);

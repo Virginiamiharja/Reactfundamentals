@@ -4,7 +4,7 @@ import { API_URL } from "../../constants/API";
 import { Redirect } from "react-router-dom";
 import swal from "sweetalert";
 import { connect } from "react-redux";
-import { usernameHandler } from "../../redux/actions";
+import { usernameHandler, loginHandler } from "../../redux/actions";
 
 class LoginScreen extends React.Component {
   state = {
@@ -19,27 +19,34 @@ class LoginScreen extends React.Component {
 
   loginHandler = () => {
     const { username, password } = this.state;
-    Axios.get(`${API_URL}/users`, {
-      params: {
-        username,
-        password
-      }
-    })
-      .then(res => {
-        if (res.data.length > 0) {
-          this.setState({
-            users: res.data,
-            isLoggedIn: true,
-            currUsername: username
-          });
-          this.props.onChangeUsername(res.data[0].fullName);
-        } else {
-          swal("Oops", "Wrong username or password", "error");
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      });
+
+    const userData = {
+      username,
+      password
+    };
+
+    this.props.onLogin(userData);
+    // Axios.get(`${API_URL}/users`, {
+    //   params: {
+    //     username,
+    //     password
+    //   }
+    // })
+    //   .then(res => {
+    //     if (res.data.length > 0) {
+    //       this.setState({
+    //         users: res.data,
+    //         isLoggedIn: true,
+    //         currUsername: username
+    //       });
+    //       this.props.onChangeUsername(res.data[0].fullName);
+    //     } else {
+    //       swal("Oops", "Wrong username or password", "error");
+    //     }
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
   };
 
   render() {
@@ -48,6 +55,7 @@ class LoginScreen extends React.Component {
       return (
         <div className="d-flex flex-column align-items-center justify-content-center">
           <h3 className="mt-5 mb-3"> Login </h3>
+          <p> Username : {this.props.user.username}</p>
           <form className="form-group">
             <input
               type="text"
@@ -95,7 +103,8 @@ const mapStateToProps = state => {
 
 // Ngeconnect function2
 const mapDispatchToProps = {
-  onChangeUsername: usernameHandler
+  onChangeUsername: usernameHandler,
+  onLogin: loginHandler
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginScreen);

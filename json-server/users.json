@@ -62,6 +62,20 @@
       "password": "12345",
       "role": "User",
       "id": 9
+    },
+    {
+      "username": "simbathecat",
+      "fullName": "Simba the Cat",
+      "password": "12345",
+      "role": "Admin",
+      "id": 10
+    },
+    {
+      "username": "captri",
+      "fullName": "Captain Ri",
+      "password": "12345",
+      "role": "Admin",
+      "id": 11
     }
   ]
 }

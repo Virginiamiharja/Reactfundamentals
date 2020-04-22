@@ -27,6 +27,9 @@ import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import navbar from "./views/components/Navbar";
 import Navbar from "./views/components/Navbar";
 
+// Trs import cookie setelah install universal cookie
+import Cookie from "universal-cookie";
+
 // Trs untuk install json server -> buat ambil data dari server, npm install -g json-server dan -g artinya global bisa digunakan dimana saja
 // Trs npm install axios
 // Trs cara start json npx json-server db.json -p 2000 tapi pastiin terminalnya di db.json filenya
@@ -35,13 +38,19 @@ import Navbar from "./views/components/Navbar";
 // npm install reactstrap redux react-redux redux-thunk
 // Trs buka index.js
 
+// Trs install npm install universal-cookie
+// Cookie itu adalah sebuah metode untuk menyimpan data di client browser
+
 // Cara import gambar
 // import Handmaid from './images/handmaid.png'
 
+// New cookie ini sebuah class jadi cookieObject ya sebuah object
+const cookieObject = new Cookie();
+
 // Mirip html tapi bukan html melainkan jsx
 // Awalnya kan extensionnya itu app.js trs ubah app.jsx jadi h1 nya bisa auto complete
-function App() {
-  let arr = ["Bandung", "Jakarta", "Tangerang"];
+class App extends React.Component {
+  // let arr = ["Bandung", "Jakarta", "Tangerang"];
 
   //  const renderArr = () => {
   //   return arr.map(val => {
@@ -51,88 +60,88 @@ function App() {
   //   })
   // }
 
-  let arrProducts = [
-    {
-      nama: "Sepatu Basket",
-      harga: 23000,
-      desc: "Sepatu basket terjelek yang pernah ada didunia jangan dibeli",
-      discount: 20,
-      stock: 10
-    },
-    {
-      nama: "Kaos Polo",
-      harga: 13000,
-      desc: "Kaos polo terjelek yang pernah ada didunia jangan dibeli",
-      discount: 40,
-      stock: 5
-    },
-    {
-      nama: "Celana Jeans",
-      harga: 28000,
-      desc: "Celana jeans terjelek yang pernah ada didunia jangan dibeli",
-      discount: 0,
-      stock: 0
-    }
-  ];
+  // let arrProducts = [
+  //   {
+  //     nama: "Sepatu Basket",
+  //     harga: 23000,
+  //     desc: "Sepatu basket terjelek yang pernah ada didunia jangan dibeli",
+  //     discount: 20,
+  //     stock: 10
+  //   },
+  //   {
+  //     nama: "Kaos Polo",
+  //     harga: 13000,
+  //     desc: "Kaos polo terjelek yang pernah ada didunia jangan dibeli",
+  //     discount: 40,
+  //     stock: 5
+  //   },
+  //   {
+  //     nama: "Celana Jeans",
+  //     harga: 28000,
+  //     desc: "Celana jeans terjelek yang pernah ada didunia jangan dibeli",
+  //     discount: 0,
+  //     stock: 0
+  //   }
+  // ];
 
-  const renderProduct = () => {
-    return arrProducts.map(val => {
-      return <ProductCard product={val} />;
-    });
-  };
+  // const renderProduct = () => {
+  //   return arrProducts.map(val => {
+  //     return <ProductCard product={val} />;
+  //   });
+  // };
 
-  let arrBooks = [
-    {
-      author: "Margaret Atwood",
-      title: "The handmaid's tale",
-      review: 4,
-      desc: `This novel can be interpreted as a double narrative, Offred's tale and the handmaids' tales. The night...`,
-      price: 18.99,
-      discount: 60,
-      image: "img/handmaid.png",
-      // image: Handmaid,
-      stock: 7
-    },
-    {
-      author: "Kevin Kwan",
-      title: "Crazy rich asians",
-      review: 5,
-      desc: `The outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...`,
-      price: 24.12,
-      discount: 80,
-      image: "img/crazyRich.png",
-      // image: Crazy,
-      stock: 0
-    },
-    {
-      author: "Aldous Huxley",
-      title: "Brave new world",
-      review: 3,
-      desc: `Dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...`,
-      price: 18.99,
-      discount: 60,
-      image: "img/brave.png",
-      // image: Brave,
-      stock: 3
-    },
-    {
-      author: "Tara Westover",
-      title: "Educated",
-      review: 4.5,
-      desc: `It is a tale of fierce family loyalty and of the grief that comes with severing the closest of ties. With...`,
-      price: 34.21,
-      discount: 0,
-      image: "img/educated.png",
-      // image: Educated,
-      stock: 3
-    }
-  ];
+  // let arrBooks = [
+  //   {
+  //     author: "Margaret Atwood",
+  //     title: "The handmaid's tale",
+  //     review: 4,
+  //     desc: `This novel can be interpreted as a double narrative, Offred's tale and the handmaids' tales. The night...`,
+  //     price: 18.99,
+  //     discount: 60,
+  //     image: "img/handmaid.png",
+  //     // image: Handmaid,
+  //     stock: 7
+  //   },
+  //   {
+  //     author: "Kevin Kwan",
+  //     title: "Crazy rich asians",
+  //     review: 5,
+  //     desc: `The outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...`,
+  //     price: 24.12,
+  //     discount: 80,
+  //     image: "img/crazyRich.png",
+  //     // image: Crazy,
+  //     stock: 0
+  //   },
+  //   {
+  //     author: "Aldous Huxley",
+  //     title: "Brave new world",
+  //     review: 3,
+  //     desc: `Dystopian novel written in 1931 by English author Aldous Huxley, and published in 1932. Largely set in...`,
+  //     price: 18.99,
+  //     discount: 60,
+  //     image: "img/brave.png",
+  //     // image: Brave,
+  //     stock: 3
+  //   },
+  //   {
+  //     author: "Tara Westover",
+  //     title: "Educated",
+  //     review: 4.5,
+  //     desc: `It is a tale of fierce family loyalty and of the grief that comes with severing the closest of ties. With...`,
+  //     price: 34.21,
+  //     discount: 0,
+  //     image: "img/educated.png",
+  //     // image: Educated,
+  //     stock: 3
+  //   }
+  // ];
 
-  const renderBook = () => {
-    return arrBooks.map(val => {
-      return <ProductCard book={val} />;
-    });
-  };
+  // const renderBook = () => {
+  //   return arrBooks.map(val => {
+  //     return <ProductCard book={val} />;
+  //   });
+  // };
 
   // return (
   //   // className ini buat yang styling
@@ -148,55 +157,61 @@ function App() {
   //   </div>
   // );
 
-  return (
-    <div className="App">
-      {/* <h1 className='p-2 mt-5 mb-5'>Virginia's Book Store</h1> */}
+  render() {
+    return (
+      <div className="App">
+        {/* <h1 className='p-2 mt-5 mb-5'>Virginia's Book Store</h1> */}
 
-      {/* <div className="row justify-content-center"> 
+        {/* <div className="row justify-content-center"> 
         {renderBook()}
       </div> */}
 
-      {/* <div className="row justify-content-center">
+        {/* <div className="row justify-content-center">
         <TableProduct/>
       </div> */}
 
-      {/* <CounterScreen/> */}
+        {/* <CounterScreen/> */}
 
-      {/* <h1 className='p-2 m-3'> Unicorn Fan Club</h1> */}
-      {/* <InputScreen/> */}
-      {/* <AuthScreen/> */}
-      {/* <LifescycleScreen/> */}
+        {/* <h1 className='p-2 m-3'> Unicorn Fan Club</h1> */}
+        {/* <InputScreen/> */}
+        {/* <AuthScreen/> */}
+        {/* <LifescycleScreen/> */}
 
-      {/* <BrowserRouter> */}
-      {/* Disini diletakan komponen yang selalu ada di tiap web page contohnya navbar */}
-      {/* <Navbar /> */}
-      {/* <Switch> */}
-      {/* exact ini buat pastiin bener2 di path itu kl ga pake exact kalo misalnya kita buka /registartion masih kebukanya home screen */}
-      {/* <Route exact path="/" component={HomeScreen} /> */}
-      {/* <Route exact path="/registration" component={AuthScreen} /> */}
-      {/* <Route exact path="/counter" component={CounterScreen} /> */}
-      {/* Karena si username itu bukan exact pathnya gitu dan : itu adalah route params */}
-      {/* <Route exact path="/profile/:username" component={ProfileScreen} /> */}
-      {/* Bintang itu artinya semua, tapi dia hrs ditaro paling bawah gitu karena switch itu ngecek satu2 dari atas  */}
-      {/* <Route path="*" component={PageNotFound} /> */}
-      {/* </Switch> */}
+        {/* <BrowserRouter> */}
+        {/* Disini diletakan komponen yang selalu ada di tiap web page contohnya navbar */}
+        {/* <Navbar /> */}
+        {/* <Switch> */}
+        {/* exact ini buat pastiin bener2 di path itu kl ga pake exact kalo misalnya kita buka /registartion masih kebukanya home screen */}
+        {/* <Route exact path="/" component={HomeScreen} /> */}
+        {/* <Route exact path="/registration" component={AuthScreen} /> */}
+        {/* <Route exact path="/counter" component={CounterScreen} /> */}
+        {/* Karena si username itu bukan exact pathnya gitu dan : itu adalah route params */}
+        {/* <Route exact path="/profile/:username" component={ProfileScreen} /> */}
+        {/* Bintang itu artinya semua, tapi dia hrs ditaro paling bawah gitu karena switch itu ngecek satu2 dari atas  */}
+        {/* <Route path="*" component={PageNotFound} /> */}
+        {/* </Switch> */}
 
-      {/* </BrowserRouter> */}
+        {/* </BrowserRouter> */}
 
-      {/* Weekend Task */}
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={HomeScreen} />
-        <Route exact path="/registration" component={RegistrationScreen} />
-        <Route exact path="/login" component={LoginScreen} />
-        <Route exact path="/userlist" component={UserListScreen} />
-        <Route exact path="/profile/:username" component={ProfileScreen1} />
-        <Route exact path="/input" component={InputScreen} />
-        <Route exact path="/todo" component={TodoReduxScreen} />
-      </Switch>
-    </div>
-  );
+        {/* Weekend Task */}
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/registration" component={RegistrationScreen} />
+          <Route exact path="/login" component={LoginScreen} />
+          <Route exact path="/userlist" component={UserListScreen} />
+          <Route exact path="/profile/:username" component={ProfileScreen1} />
+          <Route exact path="/input" component={InputScreen} />
+          <Route exact path="/todo" component={TodoReduxScreen} />
+        </Switch>
+      </div>
+    );
+  }
 }
 
 // With router ini kan harus didalem browser router jadi otak atik index.js nya, with router buat bisa akses url yang ada di link di atas navbar google search itu
 export default withRouter(App);
+
+// Perbedaan antara export default dan export biasa
+// Export defaul itu hanya boleh 1 kali trs ketika diimport namanya tuh bebas jadi kaya alias
+// Export
