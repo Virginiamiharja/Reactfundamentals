@@ -29,6 +29,9 @@ import Navbar from "./views/components/Navbar";
 
 // Trs import cookie setelah install universal cookie
 import Cookie from "universal-cookie";
+import { connect } from "react-redux";
+
+import { userKeepLogin } from "./redux/actions";
 
 // Trs untuk install json server -> buat ambil data dari server, npm install -g json-server dan -g artinya global bisa digunakan dimana saja
 // Trs npm install axios
@@ -45,6 +48,7 @@ import Cookie from "universal-cookie";
 // import Handmaid from './images/handmaid.png'
 
 // New cookie ini sebuah class jadi cookieObject ya sebuah object
+// Fungsinya menyimpan data user
 const cookieObject = new Cookie();
 
 // Mirip html tapi bukan html melainkan jsx
@@ -157,6 +161,20 @@ class App extends React.Component {
   //   </div>
   // );
 
+  // Login dan ubah global state user menjadi data user
+  // Check di app.js jika global state user sudah terisi dengan data user, cookie dengan data user
+
+  componentDidMount() {
+    // Yang di get itu nama cookie bukan valuenya
+    let cookieResult = cookieObject.get("authData");
+    console.log(cookieResult);
+    // Kita udh tau cookie result isinya object
+    // Data yang kita miliki itu buat loginin user
+    if (cookieResult) {
+      this.props.userKeepLogin(cookieResult);
+    }
+  }
+
   render() {
     return (
       <div className="App">
@@ -209,8 +227,18 @@ class App extends React.Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+
+const mapDispatchToProps = {
+  userKeepLogin
+};
+
 // With router ini kan harus didalem browser router jadi otak atik index.js nya, with router buat bisa akses url yang ada di link di atas navbar google search itu
-export default withRouter(App);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(App));
 
 // Perbedaan antara export default dan export biasa
 // Export defaul itu hanya boleh 1 kali trs ketika diimport namanya tuh bebas jadi kaya alias

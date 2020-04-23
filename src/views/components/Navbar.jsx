@@ -4,9 +4,34 @@ import { Link } from "react-router-dom";
 
 // Di react redux kan statenya global ini biar bisa dipake di navbar kita harus import
 import { connect } from "react-redux";
+import Cookie from "universal-cookie";
+import { logoutHandler } from "../../redux/actions";
+
+const cookieObject = new Cookie();
 
 // Untuk navbar nanti pakenya dari bawaan bootstrap untuk react namanya react strap
 class Navbar extends React.Component {
+  state = {
+    id: "",
+    username: "",
+    fullName: "",
+    role: ""
+  };
+
+  logOut = () => {
+    const { id, username, fullName, role } = this.state;
+    let userData = {
+      id,
+      username,
+      fullName,
+      role
+    };
+    // Untuk hapus cookie
+    cookieObject.remove("authData");
+    // Untuk hapus global state
+    this.props.logoutHandler(userData);
+  };
+
   render() {
     return (
       <div
@@ -21,6 +46,7 @@ class Navbar extends React.Component {
         <Link to="/login"> Login </Link>
         <Link to="/userlist"> List of Users </Link>
         <Link to="/todo"> To Do Redux </Link>
+        <Link onClick={this.logOut}> Log Out </Link>
         Hello {this.props.user}
       </div>
     );
@@ -36,5 +62,9 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = {
+  logoutHandler
+};
+
 // export default Navbar;
-export default connect(mapStateToProps)(Navbar);
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);
